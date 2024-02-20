@@ -1,0 +1,11 @@
+service\IProdutoService.class
+dao\ProdutoDAO.class
+service\generic\IGenericService.class
+service\ProdutoService.class
+controller\ProdutoController.class
+dao\generic\GenericDAO.class
+dao\generic\IGenericDAO.class
+dao\IProdutoDAO.class
+domain\Produto.class
+service\generic\GenericService.class
+domain\Persistente.class

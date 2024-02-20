@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+  <h:head>
+    <h:outputStylesheet> th, td { text-align: center; } h3 { margin-top: 0; text-align: center; } input[type="text"] { width: 100%; box-sizing: border-box; -webkit-box-sizing:border-box; -moz-box-sizing: border-box; } </h:outputStylesheet>
+  </h:head>
+  <h:body>
+    <p:outputPanel>
+      <h3>Produtos cadastrados</h3>
+      <div class="ui-g">
+        <div class="ui-g-2" />
+        <div class="ui-g-8">
+          <h:form id="products">
+            <p:growl id="growl" sticky="true" />
+            <p:dataTable id="productsList" var="product" value="#{produtoController.produtos}">
+              <p:column headerText="Id">
+                <h:outputText value="#{product.id}" />
+              </p:column>
+              <p:column headerText="Nome">
+                <h:outputText id="nomeInput" value="#{product.nome}" />
+              </p:column>
+              <p:column headerText="Valor">
+                <h:outputText id="valorInput" value="#{product.valor}" />
+              </p:column>
+              <p:column headerText="Editar">
+                <p:commandButton update="productsList add" value="Editar" icon="ui-icon-closethick" action="#{produtoController.edit(product)}" styleClass="ui-icon-pencil"></p:commandButton>
+              </p:column>
+              <p:column headerText="Excluir">
+                <p:commandButton update="productsList" value="Delete" icon="ui-icon-closethick" action="#{produtoController.delete(product)}" styleClass="ui-priority-primary">
+                  <p:confirm header="Atenção" message="Tem certeza que deseja excluir este produto?" icon="pi pi-exclamation-triangle" />
+                </p:commandButton>
+              </p:column>
+            </p:dataTable>
+            <br />
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+              <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no ui-button-flat" />
+              <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" />
+            </p:confirmDialog>
+          </h:form>
+        </div>
+        <div class="ui-g-2"></div>
+      </div>
+      <h3>Criar novo Produto</h3>
+      <div class="ui-g">
+        <div class="ui-g-2"></div>
+        <div class="ui-g-8">
+          <h:form id="add">
+            <h:panelGrid columns="3" cellpadding="5" style="margin: 0 auto;">
+              <p:outputLabel for="Nome" value="Nome" />
+              <p:inputText id="Nome" value="#{produtoController.produto.nome}" required="true" />
+              <p:message for="Nome" />
+              
+     
+
+
+                <f:ajax render="add" resetValues="true" />
+              </p:commandButton>
+            </h:panelGrid>
+            <!-- <h:messages errorStyle="color:red;margin:8px;"></h:messages> -->
+          </h:form>
+        </div>
+        <div class="ui-g-2"></div>
+      </div>
+    </p:outputPanel>
+  </h:body>
+</html>
